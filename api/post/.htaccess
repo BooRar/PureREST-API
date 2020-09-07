@@ -1,0 +1,44 @@
+# DirectoryIndex index.php
+Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
+ 
+# <Directory >
+#    Order allow,deny
+#    Allow from all
+#    AllowOverride All
+# </Directory>
+# Satisfy Any
+
+# Options +Indexes +MultiViews +FollowSymlinks
+
+# enable apache rewrite engine
+# RewriteEngine Off
+RewriteEngine on
+# RewriteCond %{QUERY_STRING} !vardump
+
+# set your rewrite base
+# Edit this in your init method too if you script lives in a subfolder
+ RewriteBase /
+
+# Deliver the folder or file directly if it exists on the server
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+ 
+# Push every request to index.php
+
+ 
+ 
+ 
+# RewriteBase /phpRouting
+# RewriteCond %{REQUEST_FILENAME} !=index.php
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ /phpRouting/index.php? [L,QSA]
+# RewriteRule ^about/$ phpRouting/index.php
+# RewriteRule ^(.*)$ index.php [L,QSA]
+ 
+ 
+ RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+RewriteRule ^(.*)$ /phpRouting/index.php?path=$1 [NC,L,QSA]
